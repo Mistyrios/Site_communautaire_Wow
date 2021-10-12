@@ -13,9 +13,13 @@ class UserTypeEdit extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('userID',NULL,[
-                'label' => 'UserID'
+            ->add('email',NULL, [
+                'label' => 'Email :',
+                'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer une adresse email' ],
+            ])
+            ->add('userID',NULL, [
+                'label' => 'Pseudo :',
+                'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un pseudo' ],
             ])
             ->add('roles', ChoiceType::class,[
                 'choices' => [
@@ -23,11 +27,14 @@ class UserTypeEdit extends AbstractType
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
                     'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
                 ],
-                'label' => 'ROLES User',
+                'label' => 'Rôles de l\'utilisateur :',
                 'expanded' => true,
                 'multiple' => true,
+                'attr' => ['class' => ' espaceCustom form-control']
             ])
-            ->add('isVerified')
+            ->add('isVerified',NULL, [
+                'label' => 'Vérifier le compte'
+            ])
         ;
     }
 

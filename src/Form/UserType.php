@@ -13,20 +13,22 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('userID')
-            ->add('password')
-            ->add('roles', ChoiceType::class,[
-                'choices' => [
-                    'ROLE_USER' => 'ROLE_USER',
-                    'ROLE_ADMIN' => 'ROLE_ADMIN',
-                    'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
-                ],
-                'label' => 'ROLES User',
-                'expanded' => true,
-                'multiple' => true,
+            ->add('email',NULL, [
+                'label' => 'Email :',
+                'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer une adresse email' ],
             ])
-            ->add('isVerified')
+            ->add('userID',NULL, [
+                'label' => 'Pseudo :',
+                'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un pseudo' ],
+            ])
+            ->add('password',NULL, [
+                'label' => 'Mot de passe :',
+                'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un mot de passe' ],
+            ])
+
+            ->add('isVerified',NULL, [
+                'label' => 'Vérifier le compte'
+            ])
         ;
     }
 

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Wow Chronicles - Se Connecter{% endblock %}
 
 {% block body %}
 <form method="post">
@@ -9,21 +9,19 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userID }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+    <h1 class=" mb-3 font-weight-normal">S'identifier</h1>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <div class="espaceCustom">
+        <label for="inputEmail">Email :</label>
+        <input type="email" value="{{ last_username }}" placeholder="Merci de rentrer votre email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    </div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <div class="espaceCustom" >
+        <label for="inputPassword">Mot de passe :</label>
+        <input type="password" placeholder="Merci de rentrer votre mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -36,10 +34,10 @@
         </div>
     #}
 
-    <a href="/reset-password">Mot de passe oublié?</a>
+    <a class="espaceCustom" href="/reset-password">Mot de passe oublié ?</a>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    <br>
+
+    <button class="btn btn-primary espaceCustom" type="submit" style="background-color: #343A40; color: white; margin-top: 20px ">Se connecter</button>
 </form>
 {% endblock %}
