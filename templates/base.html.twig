@@ -39,26 +39,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('contact') }}">Nous contacter</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                    </li>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_index') }}">Utilisateurs</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Admin</a>
+                            <div class="dropdown-menu">
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <a class="dropdown-item" href="{{ path('user_index') }}">Utilisateurs</a>
+                                    <div class="dropdown-divider"></div>
+                                {% endif %}
+                                <a class="dropdown-item" href="{{ path('contact_message_index') }}">Demandes de contact</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path('article_index') }}">Articles</a>
+                                <a class="dropdown-item" href="{{ path('video_index') }}">Vidéo</a>
+                                <a class="dropdown-item" href="{{ path('tag_index') }}">Tags</a>
+                                <a class="dropdown-item" href="{{ path('type_index') }}">Types</a>
+                            </div>
                         </li>
                     {% endif %}
                 </ul>
                 {% if app.user %}
                     <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ app.user.userID }}</a>
+                            <a class="nav-link" href="#">{{ app.user.pseudo }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>

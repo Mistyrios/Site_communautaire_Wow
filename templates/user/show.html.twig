@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Wow Chronicles - {{ app.user.userID }}{% endblock %}
+{% block title %}Wow Chronicles - {{ app.user.pseudo }}{% endblock %}
 
 {% block body %}
-    <h1 class="espaceCustom" >{{ user.userID }}</h1>
+    <h1 class="espaceCustom" >{{ user.pseudo }}</h1>
 
     <table class="table espaceCustom">
         <tbody>
             <tr>
                 <th>Pseudo</th>
-                <td>{{ user.userID }}</td>
+                <td>{{ user.pseudo}}</td>
             </tr>
             <tr>
                 <th>Adresse E-mail</th>
@@ -27,7 +27,7 @@
     </table>
 
     <div class="espaceCustom">
-        <a href="{{ path('user_index') }}">Revenir en arrière</a>
+        <a href="{{ path('user_index') }}">Retour à la liste</a>
 
         <a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
     </div>

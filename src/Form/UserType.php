@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +16,7 @@ class UserType extends AbstractType
                 'label' => 'Email :',
                 'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer une adresse email' ],
             ])
-            ->add('userID',NULL, [
+            ->add('pseudo',NULL, [
                 'label' => 'Pseudo :',
                 'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un pseudo' ],
             ])
@@ -25,7 +24,6 @@ class UserType extends AbstractType
                 'label' => 'Mot de passe :',
                 'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un mot de passe' ],
             ])
-
             ->add('isVerified',NULL, [
                 'label' => 'Vérifier le compte'
             ])

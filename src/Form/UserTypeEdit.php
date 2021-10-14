@@ -17,7 +17,7 @@ class UserTypeEdit extends AbstractType
                 'label' => 'Email :',
                 'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer une adresse email' ],
             ])
-            ->add('userID',NULL, [
+            ->add('pseudo',NULL, [
                 'label' => 'Pseudo :',
                 'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un pseudo' ],
             ])

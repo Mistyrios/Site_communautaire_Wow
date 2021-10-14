@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,38 +17,32 @@ class ContactController extends AbstractController
      */
     public function index(Request $request, MailerInterface $mailer)
     {
-        $form = $this->createForm(ContactType::class);
-
+        $user = $this->getUser();
+        $option = $user instanceof User ? ['user' => $user] : [];
+        $form = $this->createForm(ContactType::class, null, $option);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-
-
-        if($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
 
             $message = (new Email())
-                ->from($contactFormData['email'])
+                ->from($contactFormData->getEmail())
                 ->to('sitecommuwow@gmail.com')
-                ->subject($contactFormData['subject'])
-                ->text('Sender : '.$contactFormData['email'].\PHP_EOL.
-                    $contactFormData['message'],
+                ->subject($contactFormData->getSujet())
+                ->html('Sender : ' . $contactFormData->getEmail() . \PHP_EOL .
+                    $contactFormData->getMessage(),
                     'text/plain');
             $mailer->send($message);
 
+            $this->addFlash('success', 'Votre demande de contact à bien été envoyer');
 
-
-
-            $this->addFlash('success', 'Your message has been sent');
-
+            $em->persist($contactFormData);
+            $em->flush();
             return $this->redirectToRoute('contact');
         }
-
-
-
         return $this->render('contact/index.html.twig', [
-            'our_form' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
-
 }

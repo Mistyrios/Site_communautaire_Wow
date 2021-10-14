@@ -40,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $userID;
+    private $pseudo;
 
     /**
      * @ORM\Column(type="boolean")
@@ -136,14 +136,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getUserID(): ?string
+    public function getPseudo(): ?string
     {
-        return $this->userID;
+        return $this->pseudo;
     }
 
-    public function setUserID(string $userID): self
+    public function setPseudo(string $pseudo): self
     {
-        $this->userID = $userID;
+        $this->pseudo = $pseudo;
 
         return $this;
     }

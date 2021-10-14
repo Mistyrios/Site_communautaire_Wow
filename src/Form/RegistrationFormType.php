@@ -22,7 +22,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer votre adresse email' ],
                 'label' => 'Email :'
             ])
-            ->add('userID',NULL,[
+            ->add('pseudo',NULL,[
                 'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer votre adresse pseudo'],
                 'label' => 'Pseudo :'
             ])
