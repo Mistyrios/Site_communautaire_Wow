@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Type;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,9 +13,13 @@ class TypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('descriptionType')
-            ->add('numéroType')
+            ->add('nom', null, [
+                'attr' => ['class' => 'espaceCustom']
+            ])
+            ->add('descriptionType', CKEditorType::class, [
+                'attr' => ['class' => 'espaceCustom'],
+                'label' => 'Description'
+            ])
         ;
     }
 

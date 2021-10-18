@@ -30,14 +30,14 @@ class Tag
     private $couleur;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="tags")
-     */
-    private $articles;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Video::class, mappedBy="tags")
      */
     private $videos;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="tags")
+     */
+    private $articles;
 
     public function __construct()
     {
@@ -73,30 +73,7 @@ class Tag
 
         return $this;
     }
-
-    /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        $this->articles->removeElement($article);
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection|Video[]
@@ -120,6 +97,33 @@ class Tag
     {
         if ($this->videos->removeElement($video)) {
             $video->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeTag($this);
         }
 
         return $this;

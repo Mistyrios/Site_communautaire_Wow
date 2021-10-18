@@ -1,39 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Type index{% endblock %}
+{% block title %}Wow Chronicles - Liste des Catégories{% endblock %}
 
 {% block body %}
-    <h1>Type index</h1>
+    <h1>Liste des Catégories</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>DescriptionType</th>
-                <th>NuméroType</th>
-                <th>actions</th>
+                <th>Description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         {% for type in types %}
             <tr>
-                <td>{{ type.id }}</td>
                 <td>{{ type.nom }}</td>
-                <td>{{ type.descriptionType }}</td>
-                <td>{{ type.numéroType }}</td>
+                <td>{{ type.descriptionType | u.truncate(100,'[...]',false) | raw }}</td>
                 <td>
-                    <a href="{{ path('type_show', {'id': type.id}) }}">show</a>
-                    <a href="{{ path('type_edit', {'id': type.id}) }}">edit</a>
+                    <a href="{{ path('type_edit', {'id': type.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun type trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('type_new') }}">Create new</a>
+    <a href="{{ path('type_new') }}">Créer un nouveau catégorie</a>
 {% endblock %}

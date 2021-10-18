@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+date_default_timezone_set('Europe/Paris');
 #[Route('/admin/article')]
 class ArticleController extends AbstractController
 {
@@ -17,7 +17,7 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articleRepository->findBy([],['createdAt' => 'DESC']),
         ]);
     }
 
@@ -30,6 +30,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $article->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($article);
             $entityManager->flush();
 

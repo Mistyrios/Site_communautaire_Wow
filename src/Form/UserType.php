@@ -13,15 +13,15 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email',NULL, [
-                'label' => 'Email :',
+                'label' => 'Email ',
                 'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer une adresse email' ],
             ])
             ->add('pseudo',NULL, [
-                'label' => 'Pseudo :',
+                'label' => 'Pseudo ',
                 'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un pseudo' ],
             ])
             ->add('password',NULL, [
-                'label' => 'Mot de passe :',
+                'label' => 'Mot de passe ',
                 'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un mot de passe' ],
             ])
             ->add('isVerified',NULL, [

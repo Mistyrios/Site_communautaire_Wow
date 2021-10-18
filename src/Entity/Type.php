@@ -30,11 +30,6 @@ class Type
     private $descriptionType;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $numéroType;
-
-    /**
      * @ORM\OneToMany(targetEntity=Video::class, mappedBy="type")
      */
     private $videos;
@@ -75,18 +70,6 @@ class Type
     public function setDescriptionType(?string $descriptionType): self
     {
         $this->descriptionType = $descriptionType;
-
-        return $this;
-    }
-
-    public function getNuméroType(): ?int
-    {
-        return $this->numéroType;
-    }
-
-    public function setNuméroType(int $numéroType): self
-    {
-        $this->numéroType = $numéroType;
 
         return $this;
     }

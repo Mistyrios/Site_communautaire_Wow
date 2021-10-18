@@ -1,41 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ContactMessage index{% endblock %}
+{% block title %}Wow Chronicles - Liste des demandes de contact{% endblock %}
 
 {% block body %}
-    <h1>ContactMessage index</h1>
+    <h1>Liste des demandes de contact</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Pseudo</th>
                 <th>Email</th>
                 <th>Sujet</th>
                 <th>Message</th>
-                <th>actions</th>
+                <th>Crée le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for contact_message in contact_messages %}
             <tr>
-                <td>{{ contact_message.id }}</td>
                 <td>{{ contact_message.pseudo }}</td>
                 <td>{{ contact_message.email }}</td>
                 <td>{{ contact_message.sujet }}</td>
-                <td>{{ contact_message.message|raw}}</td>
+                <td>{{ contact_message.message| u.truncate(100,'[...]',false) | raw }}</td>
+                <td>{{contact_message.createdAt ? contact_message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('contact_message_show', {'id': contact_message.id}) }}">show</a>
-                    <a href="{{ path('contact_message_edit', {'id': contact_message.id}) }}">edit</a>
+                    <a href="{{ path('contact_message_show', {'id': contact_message.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucune demande de contact effectué</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('contact_message_new') }}">Create new</a>
 {% endblock %}

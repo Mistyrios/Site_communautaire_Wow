@@ -14,11 +14,11 @@ class UserTypeEdit extends AbstractType
     {
         $builder
             ->add('email',NULL, [
-                'label' => 'Email :',
+                'label' => 'Email ',
                 'attr' => ['class' => 'espaceCustom', 'placeholder' => 'Merci de rentrer une adresse email' ],
             ])
             ->add('pseudo',NULL, [
-                'label' => 'Pseudo :',
+                'label' => 'Pseudo ',
                 'attr' => ['class' => ' espaceCustom', 'placeholder' => 'Merci de rentrer un pseudo' ],
             ])
             ->add('roles', ChoiceType::class,[
@@ -27,7 +27,7 @@ class UserTypeEdit extends AbstractType
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
                     'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
                 ],
-                'label' => 'Rôles de l\'utilisateur :',
+                'label' => 'Rôles de l\'utilisateur ',
                 'expanded' => true,
                 'multiple' => true,
                 'attr' => ['class' => ' espaceCustom form-control']

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Article{% endblock %}
+{% block title %}Wow Chronicles - Crée un article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+    <h1 class="espaceCustom">Crée un article</h1>
 
     {{ include('article/_form.html.twig') }}
 
-    <a href="{{ path('article_index') }}">back to list</a>
+    <a href="{{ path('article_index') }}">Revenir à la liste</a>
 {% endblock %}

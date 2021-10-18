@@ -45,7 +45,7 @@ class TypeController extends AbstractController
     #[Route('/{id}', name: 'type_show', methods: ['GET'])]
     public function show(Type $type): Response
     {
-        return $this->render('type/show.html.twig', [
+        return $this->render('type/videoshow.html.twig', [
             'type' => $type,
         ]);
     }

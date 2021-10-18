@@ -115,8 +115,24 @@
             "./config/packages/fos_ckeditor.yaml"
         ]
     },
+    "imagine/imagine": {
+        "version": "1.2.4"
+    },
     "laminas/laminas-code": {
         "version": "4.4.3"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "ffbb72e74598f04cc7f79f9fc736c77eeb98f569"
+        },
+        "files": [
+            "./config/packages/liip_imagine.yaml",
+            "./config/routes/liip_imagine.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.13.0"
@@ -257,6 +273,9 @@
     "symfony/http-kernel": {
         "version": "v5.3.9"
     },
+    "symfony/intl": {
+        "version": "v5.3.8"
+    },
     "symfony/mailer": {
         "version": "4.3",
         "recipe": {
@@ -322,6 +341,9 @@
     },
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
+    },
+    "symfony/process": {
+        "version": "v5.3.7"
     },
     "symfony/property-access": {
         "version": "v5.3.8"
@@ -462,6 +484,15 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.5.0"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.3.3"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.3"
+    },
+    "twig/string-extra": {
+        "version": "v3.3.3"
     },
     "twig/twig": {
         "version": "v3.3.3"

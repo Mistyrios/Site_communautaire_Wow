@@ -8,9 +8,9 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Pseudo</th>
                 <th>Adresse E-mail</th>
                 <th>Roles</th>
-                <th>Pseudo</th>
                 <th>Compte vérifié</th>
                 <th>actions</th>
             </tr>
@@ -18,9 +18,9 @@
         <tbody>
         {% for user in users %}
             <tr>
+                <td>{{ user.pseudo }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.pseudo }}</td>
                 <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>

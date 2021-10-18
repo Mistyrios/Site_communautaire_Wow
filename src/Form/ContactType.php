@@ -17,22 +17,22 @@ class ContactType extends AbstractType
         $user = $options['user'] instanceof User ? $options['user'] : null;
         $builder
             ->add('pseudo',NULL, [
-                'label' => 'Pseudo :',
+                'label' => 'Pseudo ',
                 'attr' => ['class' => 'espaceCustom'],
                 'data'=> $user?->getPseudo()
             ])
             ->add('email',NULL, [
-                'label' => 'Adresse Email :',
+                'label' => 'Adresse Email ',
                 'attr' => ['class' => 'espaceCustom'],
                 'data'=> $user?->getEmail()
             ])
             ->add('sujet', NULL,[
-                'label' => 'Sujet :',
+                'label' => 'Sujet ',
                 'attr' => ['class' => 'espaceCustom']
             ])
             ->add('message', CKEditorType::class, [
                 'attr' => ['class' => 'espaceCustom', 'rows' => 5],
-                'label' => 'Message :'
+                'label' => 'Message '
             ])
         ;
     }

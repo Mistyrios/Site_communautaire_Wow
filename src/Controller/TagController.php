@@ -45,7 +45,7 @@ class TagController extends AbstractController
     #[Route('/{id}', name: 'tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
     {
-        return $this->render('tag/show.html.twig', [
+        return $this->render('tag/videoshow.html.twig', [
             'tag' => $tag,
         ]);
     }

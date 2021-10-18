@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -31,6 +32,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $image;
 
@@ -39,16 +41,17 @@ class Article
      */
     private $createdAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="articles")
-     */
-    private $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="articles")
+     */
+    private $tags;
 
     public function __construct()
     {
@@ -108,6 +111,20 @@ class Article
         return $this;
     }
 
+
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Tag[]
      */
@@ -120,7 +137,6 @@ class Article
     {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
-            $tag->addArticle($this);
         }
 
         return $this;
@@ -128,21 +144,7 @@ class Article
 
     public function removeTag(Tag $tag): self
     {
-        if ($this->tags->removeElement($tag)) {
-            $tag->removeArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function getType(): ?Type
-    {
-        return $this->type;
-    }
-
-    public function setType(?Type $type): self
-    {
-        $this->type = $type;
+        $this->tags->removeElement($tag);
 
         return $this;
     }

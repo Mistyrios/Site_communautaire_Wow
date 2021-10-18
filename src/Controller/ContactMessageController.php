@@ -17,28 +17,7 @@ class ContactMessageController extends AbstractController
     public function index(ContactMessageRepository $contactMessageRepository): Response
     {
         return $this->render('contact_message/index.html.twig', [
-            'contact_messages' => $contactMessageRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/new', name: 'contact_message_new', methods: ['GET','POST'])]
-    public function new(Request $request): Response
-    {
-        $contactMessage = new ContactMessage();
-        $form = $this->createForm(ContactMessageType::class, $contactMessage);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contactMessage);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('contact_message_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('contact_message/new.html.twig', [
-            'contact_message' => $contactMessage,
-            'form' => $form,
+            'contact_messages' => $contactMessageRepository->findBy([],['createdAt' => 'DESC']),
         ]);
     }
 
@@ -47,24 +26,6 @@ class ContactMessageController extends AbstractController
     {
         return $this->render('contact_message/show.html.twig', [
             'contact_message' => $contactMessage,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'contact_message_edit', methods: ['GET','POST'])]
-    public function edit(Request $request, ContactMessage $contactMessage): Response
-    {
-        $form = $this->createForm(ContactMessageType::class, $contactMessage);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('contact_message_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('contact_message/edit.html.twig', [
-            'contact_message' => $contactMessage,
-            'form' => $form,
         ]);
     }
 

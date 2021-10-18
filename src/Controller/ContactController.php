@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ContactMessage;
 use App\Entity\User;
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+date_default_timezone_set('Europe/Paris');
 
 class ContactController extends AbstractController
 {
@@ -35,9 +37,12 @@ class ContactController extends AbstractController
                     'text/plain');
             $mailer->send($message);
 
+            $contact = new ContactMessage();
+            $contact = $contactFormData;
+            $contact->setCreatedAt(new \DateTimeImmutable());
             $this->addFlash('success', 'Votre demande de contact à bien été envoyer');
 
-            $em->persist($contactFormData);
+            $em->persist($contact);
             $em->flush();
             return $this->redirectToRoute('contact');
         }

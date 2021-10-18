@@ -1,43 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Video index{% endblock %}
+{% block title %}Wow Chronicles - Liste des vidéos{% endblock %}
 
 {% block body %}
-    <h1>Video index</h1>
+    <h1 class="espaceCustom">Liste des vidéos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titre</th>
                 <th>Lien</th>
                 <th>Description</th>
                 <th>Auteur</th>
-                <th>PostedAt</th>
-                <th>actions</th>
+                <th>Postée le </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for video in videos %}
             <tr>
-                <td>{{ video.id }}</td>
+
                 <td>{{ video.titre }}</td>
-                <td>{{ video.lien }}</td>
-                <td>{{ video.description }}</td>
+                <td>{{ video.lien| u.truncate(20, '[...]', false) | raw }}</td>
+                <td>{{ video.description| u.truncate(50, '[...]', false) | raw }}</td>
                 <td>{{ video.auteur }}</td>
                 <td>{{ video.postedAt ? video.postedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('video_show', {'id': video.id}) }}">show</a>
-                    <a href="{{ path('video_edit', {'id': video.id}) }}">edit</a>
+                    <a href="{{ path('video_show', {'id': video.id}) }}">Voir</a>
+                    <a href="{{ path('video_edit', {'id': video.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucune vidéo trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('video_new') }}">Create new</a>
+    <a href="{{ path('video_new') }}">Crée une nouvelle vidéo</a>
 {% endblock %}
