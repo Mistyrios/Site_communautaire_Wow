@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wow Chronicles - Créer un nouveau tag{% endblock %}
+
+{% block body %}
+    <h1 class="espaceCustom">Créer un nouveau tag</h1>
+
+    {{ include('tag/_form.html.twig') }}
+
+    <a href="{{ path('tag_index') }}">Retour à la liste</a>
+{% endblock %}

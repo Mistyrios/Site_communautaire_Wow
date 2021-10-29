@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wow Chronicles - Liste des demandes de contact{% endblock %}
+
+{% block body %}
+    <h1>Liste des demandes de contact</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Sujet</th>
+                <th>Message</th>
+                <th>Crée le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact_message in contact_messages %}
+            <tr>
+                <td>{{ contact_message.pseudo }}</td>
+                <td>{{ contact_message.email }}</td>
+                <td>{{ contact_message.sujet }}</td>
+                <td>{{ contact_message.message| u.truncate(100,'[...]',false) | raw }}</td>
+                <td>{{contact_message.createdAt ? contact_message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('contact_message_show', {'id': contact_message.id}) }}">Voir</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune demande de contact effectué</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
