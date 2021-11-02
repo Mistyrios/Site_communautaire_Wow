@@ -3,3 +3,9 @@
 /public/media/cache/
 ###< liip/imagine-bundle ###
 /.env
+/.gitignore
+/bin
+/.idea
+/migrations
+/var
+vendor

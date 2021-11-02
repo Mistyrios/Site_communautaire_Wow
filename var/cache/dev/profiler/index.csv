@@ -816,3 +816,4 @@ ff9ee9,127.0.0.1,GET,http://wow-chronicles.fr/login,1635327218,,200
 7e3fde,127.0.0.1,GET,http://wow-chronicles.fr/reset-password,1635327222,,200
 485d88,127.0.0.1,POST,http://wow-chronicles.fr/reset-password,1635327253,,302
 ec2794,127.0.0.1,GET,http://wow-chronicles.fr/reset-password/check-email,1635327253,,200
+8e43a9,127.0.0.1,GET,http://wow-chronicles.fr/,1635497789,,200
