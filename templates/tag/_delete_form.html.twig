@@ -1,4 +1,0 @@
-<form method="post" action="{{ path('tag_delete', {'id': tag.id}) }}" onsubmit="return confirm('Êtes vous sur de vouloir supprimer ce tag ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tag.id) }}">
-    <button class="btn" style="background-color: #343A40; color: white; margin-bottom: 20px">Supprimer</button>
-</form>
