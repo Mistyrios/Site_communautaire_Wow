@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wow Chronicles - Editer {{ article.titre }}{% endblock %}
+
+{% block body %}
+    <h1 class="espaceCustom">Editer {{ article.titre }}</h1>
+
+    {{ include('article/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    {{ include('article/_delete_form.html.twig') }}
+
+    <a href="{{ path('article_index') }}">Revenir à la liste</a>
+{% endblock %}

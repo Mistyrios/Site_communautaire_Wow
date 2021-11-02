@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wow Chronicles - Crée un nouveau Type{% endblock %}
+
+{% block body %}
+    <h1 class="espaceCustom">Crée un nouveau Type</h1>
+
+    {{ include('type/_form.html.twig') }}
+
+    <a href="{{ path('type_index') }}">Retour à la liste</a>
+{% endblock %}

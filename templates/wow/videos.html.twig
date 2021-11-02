@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wow Chronicles - Vidéos{% endblock %}
+
+{% block body %}
+    <section class="article">
+        {% for video in videos %}
+            <article style="display: flex; align-items: center; flex-direction: column">
+                <h2>{{ video.titre}}</h2>
+                <div class="metadata espaceCustom">Posté le {{ video.postedAt | date('d/m/y') }} dans la catégorie {{ video.type.nom }}</div>
+                <div class="content" style="display: flex; align-items: center; flex-direction: column">
+                    <iframe class="espaceCustom" width="560" height="315" src="{{ video.lien }}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div style="display: flex; flex-direction: row">
+                        <p>Tags de la vidéo :&nbsp</p>
+                        {% for tag in video.tags %}
+                            <p style="color: {{ tag.couleur }}">#{{ tag.nom }}&nbsp</p>
+                        {% endfor %}
+                    </div>
+                    <p>Auteur : {{ video.auteur }}</p>
+                    <p>{{ video.description | u.truncate(200,'[...]',false) | raw }}</p>
+                    <a href="{{ path('show_video', {'id': video.id}) }}" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </article>
+            <hr>
+        {% endfor %}
+    </section>
+{% endblock %}

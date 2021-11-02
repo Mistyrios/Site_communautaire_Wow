@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wow Chronicles - Liste des tags{% endblock %}
+
+{% block body %}
+    <h1>Liste des tags</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Couleur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td>#{{ tag.nom }}</td>
+                <td>{{ tag.couleur }}</td>
+                <td>
+                    <a href="{{ path('tag_edit', {'id': tag.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun tag trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tag_new') }}">Crée un nouveau tag</a>
+{% endblock %}
